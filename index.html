@@ -6,14 +6,14 @@
     <title>RSG-UP | Catálogo Oficial</title>
     <style>
         :root {
-            --bg-dark: #07090d;
-            --card-bg: #11151e;
-            --card-border: #232c3d;
+            --bg-dark: #05070a;
+            --card-bg: #0f141e;
+            --card-border: #1e293b;
             --blue-main: #2b7de9;
             --blue-glow: #38bdf8;
-            --blue-deep: #174382;
-            --text-silver: #cbd5e1;
-            --text-muted: #64748b;
+            --cyan-neon: #00f2fe;
+            --bonus-bg: rgba(14, 165, 233, 0.16);
+            --bonus-border: rgba(56, 189, 248, 0.55);
         }
 
         * {
@@ -22,50 +22,60 @@
             padding: 0;
             font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
             -webkit-tap-highlight-color: transparent;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
-        /* --- FONDO TEXTURADO PROFESIONAL (FIBRA + MALLA + LUZ RADIAL) --- */
+        /* --- FONDO TEXTURADO ULTRA HD (MALLA HEXAGONAL / CARBONO + ILUMINACIÓN VOLUMÉTRICA) --- */
         body {
             background-color: var(--bg-dark);
             background-image: 
-                radial-gradient(circle at 50% 0%, rgba(43, 125, 233, 0.18) 0%, transparent 55%),
-                radial-gradient(circle at 85% 90%, rgba(23, 67, 130, 0.15) 0%, transparent 45%),
-                repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.015) 0px, rgba(255, 255, 255, 0.015) 2px, transparent 2px, transparent 8px),
-                repeating-linear-gradient(-45deg, rgba(0, 0, 0, 0.4) 0px, rgba(0, 0, 0, 0.4) 2px, transparent 2px, transparent 8px);
+                radial-gradient(ellipse at 50% -10%, rgba(43, 125, 233, 0.28) 0%, transparent 60%),
+                radial-gradient(circle at 15% 85%, rgba(0, 242, 254, 0.1) 0%, transparent 45%),
+                radial-gradient(circle at 85% 90%, rgba(29, 78, 216, 0.18) 0%, transparent 50%),
+                linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+                repeating-linear-gradient(45deg, rgba(0, 0, 0, 0.5) 0px, rgba(0, 0, 0, 0.5) 2px, transparent 2px, transparent 6px);
+            background-size: 100% 100%, 100% 100%, 100% 100%, 28px 28px, 28px 28px, 12px 12px;
             color: #ffffff;
             display: flex;
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
-            padding: 20px 14px 40px;
+            padding: 22px 14px 45px;
             overflow-x: hidden;
         }
 
-        /* --- ANIMACIONES GLOBALES --- */
+        /* --- ANIMACIONES OPTIMIZADAS PARA GPU (120 FPS FLUIDOS) --- */
         @keyframes modalAppear {
-            0% { opacity: 0; transform: scale(0.92) translateY(15px); }
-            100% { opacity: 1; transform: scale(1) translateY(0); }
+            0% { opacity: 0; transform: scale3d(0.92, 0.92, 1) translate3d(0, 18px, 0); }
+            100% { opacity: 1; transform: scale3d(1, 1, 1) translate3d(0, 0, 0); }
         }
 
         @keyframes pulseGlow {
-            0%, 100% { text-shadow: 0 0 12px rgba(43, 125, 233, 0.5), 0 0 25px rgba(56, 189, 248, 0.25); }
-            50% { text-shadow: 0 0 20px rgba(43, 125, 233, 0.9), 0 0 38px rgba(56, 189, 248, 0.6); }
+            0%, 100% { text-shadow: 0 0 14px rgba(43, 125, 233, 0.6), 0 0 28px rgba(0, 242, 254, 0.3); }
+            50% { text-shadow: 0 0 24px rgba(56, 189, 248, 0.95), 0 0 45px rgba(0, 242, 254, 0.7); }
         }
 
         @keyframes cardEntrance {
-            0% { opacity: 0; transform: translateY(25px); }
-            100% { opacity: 1; transform: translateY(0); }
+            0% { opacity: 0; transform: translate3d(0, 28px, 0) scale3d(0.96, 0.96, 1); }
+            100% { opacity: 1; transform: translate3d(0, 0, 0) scale3d(1, 1, 1); }
         }
 
         @keyframes diagonalShine {
-            0% { left: -120%; }
-            25% { left: 150%; }
-            100% { left: 150%; }
+            0% { transform: translate3d(-180%, 0, 0) skewX(-25deg); }
+            28% { transform: translate3d(260%, 0, 0) skewX(-25deg); }
+            100% { transform: translate3d(260%, 0, 0) skewX(-25deg); }
         }
 
         @keyframes floatDiamond {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-3px) rotate(6deg); }
+            0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg) scale(1); }
+            50% { transform: translate3d(0, -3px, 0) rotate(8deg) scale(1.08); }
+        }
+
+        @keyframes bonusPulse {
+            0%, 100% { box-shadow: 0 0 8px rgba(56, 189, 248, 0.25), inset 0 0 6px rgba(56, 189, 248, 0.15); border-color: rgba(56, 189, 248, 0.5); }
+            50% { box-shadow: 0 0 14px rgba(0, 242, 254, 0.55), inset 0 0 10px rgba(0, 242, 254, 0.3); border-color: rgba(0, 242, 254, 0.9); }
         }
 
         /* --- MODAL DE POLÍTICA DE PRIVACIDAD --- */
@@ -73,40 +83,43 @@
             position: fixed;
             inset: 0;
             background: rgba(3, 5, 8, 0.92);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             display: flex;
             justify-content: center;
             align-items: center;
             z-index: 9999;
             padding: 14px;
-            transition: opacity 0.35s ease;
+            transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: opacity;
         }
 
         .modal-box {
-            background: linear-gradient(160deg, #131822 0%, #0b0e14 100%);
-            border: 1px solid #28354d;
+            background: linear-gradient(160deg, #131926 0%, #090c12 100%);
+            border: 1px solid #2a3954;
             border-radius: 18px;
             max-width: 620px;
             width: 100%;
             max-height: 86vh;
             display: flex;
             flex-direction: column;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9), 0 0 25px rgba(43, 125, 233, 0.15);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.95), 0 0 30px rgba(43, 125, 233, 0.2);
             overflow: hidden;
-            animation: modalAppear 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            animation: modalAppear 0.38s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: transform, opacity;
         }
 
         .modal-header {
-            background: linear-gradient(90deg, #101622, #182336, #101622);
+            background: linear-gradient(90deg, #0e1420, #19263d, #0e1420);
             padding: 16px 20px;
-            border-bottom: 1px solid #26344d;
+            border-bottom: 1px solid #263550;
             text-align: center;
         }
 
         .modal-header h2 {
             color: var(--blue-glow);
             font-size: 1.15rem;
-            letter-spacing: 0.8px;
+            letter-spacing: 1px;
             text-transform: uppercase;
         }
 
@@ -123,7 +136,7 @@
             width: 6px;
         }
         .modal-content::-webkit-scrollbar-thumb {
-            background: #2b7de9;
+            background: linear-gradient(180deg, #38bdf8, #2563eb);
             border-radius: 10px;
         }
 
@@ -132,7 +145,7 @@
             margin-top: 16px;
             margin-bottom: 6px;
             font-size: 0.98rem;
-            border-left: 3px solid #2b7de9;
+            border-left: 3px solid #38bdf8;
             padding-left: 8px;
         }
 
@@ -142,139 +155,172 @@
 
         .modal-footer {
             padding: 14px 20px;
-            background: #0e131d;
-            border-top: 1px solid #26344d;
+            background: #0c111a;
+            border-top: 1px solid #263550;
         }
 
         .btn-accept {
             background: linear-gradient(135deg, #2b7de9 0%, #1d4ed8 100%);
             color: white;
-            border: 1px solid rgba(255,255,255,0.15);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             padding: 13px 20px;
             font-size: 0.95rem;
             font-weight: 700;
             border-radius: 10px;
             cursor: pointer;
             width: 100%;
-            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
-            transition: all 0.25s ease;
+            box-shadow: 0 4px 18px rgba(37, 99, 235, 0.45);
+            transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.2s ease;
+            will-change: transform;
         }
 
         .btn-accept:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 22px rgba(56, 189, 248, 0.55);
+            transform: translate3d(0, -2px, 0);
+            box-shadow: 0 8px 25px rgba(56, 189, 248, 0.6);
+        }
+
+        .btn-accept:active {
+            transform: scale3d(0.97, 0.97, 1);
         }
 
         /* --- ENCABEZADO PRINCIPAL --- */
         header {
             text-align: center;
-            margin-bottom: 28px;
-            margin-top: 6px;
+            margin-bottom: 30px;
+            margin-top: 4px;
             position: relative;
         }
 
         .main-title {
-            font-size: 3.1rem;
+            font-size: 3.2rem;
             font-weight: 900;
-            letter-spacing: 3px;
+            letter-spacing: 3.5px;
             color: #f8fafc;
             line-height: 1;
-            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.8);
+            text-shadow: 0 5px 18px rgba(0, 0, 0, 0.9);
         }
 
         .main-title span {
-            color: var(--blue-main);
-            animation: pulseGlow 3s infinite ease-in-out;
+            color: var(--blue-glow);
+            animation: pulseGlow 2.8s infinite ease-in-out;
         }
 
         .version-text {
-            font-size: 1.2rem;
+            font-size: 1.15rem;
             font-weight: 700;
             color: #94a3b8;
             margin-top: 6px;
-            letter-spacing: 1px;
+            letter-spacing: 1.2px;
         }
 
         .company-text {
-            font-size: 0.8rem;
-            font-weight: 600;
-            color: #64748b;
-            letter-spacing: 1.5px;
-            margin-top: 4px;
-            background: rgba(15, 23, 42, 0.7);
-            border: 1px solid #1e293b;
-            padding: 3px 12px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: #7dd3fc;
+            letter-spacing: 1.6px;
+            margin-top: 6px;
+            background: linear-gradient(180deg, rgba(15, 23, 42, 0.9), rgba(10, 15, 28, 0.95));
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            padding: 4px 14px;
             border-radius: 20px;
             display: inline-block;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
         }
 
         /* --- CUADRÍCULA COMPACTA DE TARJETAS --- */
         .grid-container {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
+            gap: 13px;
             width: 100%;
-            max-width: 680px;
+            max-width: 700px;
         }
 
         @media (min-width: 600px) {
             .grid-container {
                 grid-template-columns: repeat(3, 1fr);
-                gap: 14px;
+                gap: 16px;
             }
         }
 
-        /* --- DISEÑO DE TARJETA COMPACTA Y TEXTURADA --- */
+        /* --- DISEÑO DE TARJETA CON TEXTURA METÁLICA / MICROFIBRA Y BONUS EN ESQUINA --- */
         .card {
             position: relative;
-            background: 
-                radial-gradient(circle at top right, rgba(43, 125, 233, 0.14), transparent 65%),
-                linear-gradient(145deg, #161c28 0%, #0d1017 100%);
-            border: 1px solid #263147;
-            border-radius: 14px;
-            padding: 14px 12px;
+            background-color: #0e131d;
+            background-image: 
+                radial-gradient(circle at 85% 15%, rgba(0, 242, 254, 0.16), transparent 55%),
+                radial-gradient(circle at 15% 90%, rgba(37, 99, 235, 0.15), transparent 60%),
+                repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.02) 0px, rgba(255, 255, 255, 0.02) 1px, transparent 1px, transparent 5px),
+                linear-gradient(155deg, #161e2e 0%, #0b0f17 100%);
+            border: 1px solid #283650;
+            border-radius: 16px;
+            padding: 34px 12px 14px; /* Espacio superior extra para el cuadrito de Bonus en la esquina */
             text-align: center;
             box-shadow: 
-                0 8px 20px rgba(0, 0, 0, 0.65),
-                inset 0 1px 0 rgba(255, 255, 255, 0.08);
+                0 10px 25px rgba(0, 0, 0, 0.75),
+                inset 0 1px 0 rgba(255, 255, 255, 0.12),
+                inset 0 0 20px rgba(0, 0, 0, 0.4);
             overflow: hidden;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.25s, box-shadow 0.25s;
-            animation: cardEntrance 0.5s ease backwards;
+            transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.25s ease, box-shadow 0.25s ease;
+            animation: cardEntrance 0.45s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+            will-change: transform;
         }
 
-        /* Escalonado de entrada */
-        .card:nth-child(1) { animation-delay: 0.05s; }
-        .card:nth-child(2) { animation-delay: 0.12s; }
-        .card:nth-child(3) { animation-delay: 0.19s; }
-        .card:nth-child(4) { animation-delay: 0.26s; }
-        .card:nth-child(5) { animation-delay: 0.33s; }
-        .card:nth-child(6) { animation-delay: 0.40s; }
+        /* Escalonado ultra rápido */
+        .card:nth-child(1) { animation-delay: 0.04s; }
+        .card:nth-child(2) { animation-delay: 0.09s; }
+        .card:nth-child(3) { animation-delay: 0.14s; }
+        .card:nth-child(4) { animation-delay: 0.19s; }
+        .card:nth-child(5) { animation-delay: 0.24s; }
+        .card:nth-child(6) { animation-delay: 0.29s; }
 
-        /* Destello diagonal animado */
+        /* Destello diagonal acelerado por GPU */
         .card::before {
             content: '';
             position: absolute;
             top: 0;
-            left: -120%;
+            left: 0;
             width: 55%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.14), transparent);
-            transform: skewX(-25deg);
-            animation: diagonalShine 5.5s infinite ease-in-out;
+            background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.18), transparent);
+            animation: diagonalShine 4.8s infinite ease-in-out;
             pointer-events: none;
+            will-change: transform;
         }
 
         .card:nth-child(even)::before {
-            animation-delay: 2.2s;
+            animation-delay: 2.1s;
         }
 
         .card:hover {
-            transform: translateY(-4px) scale(1.02);
-            border-color: var(--blue-main);
-            box-shadow: 0 12px 26px rgba(0, 0, 0, 0.8), 0 0 18px rgba(43, 125, 233, 0.3);
+            transform: translate3d(0, -5px, 0) scale3d(1.02, 1.02, 1);
+            border-color: var(--blue-glow);
+            box-shadow: 0 14px 30px rgba(0, 0, 0, 0.85), 0 0 22px rgba(56, 189, 248, 0.35);
+        }
+
+        /* --- CUADRITO DE BONUS EN LA ESQUINA SUPERIOR DERECHA --- */
+        .bonus-tag {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: linear-gradient(135deg, rgba(14, 165, 233, 0.24) 0%, rgba(37, 99, 235, 0.32) 100%);
+            border: 1px solid var(--bonus-border);
+            border-radius: 7px;
+            padding: 3px 7px;
+            font-size: 0.68rem;
+            font-weight: 800;
+            color: #e0f2fe;
+            letter-spacing: 0.3px;
+            display: inline-flex;
+            align-items: center;
+            gap: 3px;
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            animation: bonusPulse 3s infinite ease-in-out;
+            z-index: 2;
         }
 
         .diamond-badge {
@@ -282,60 +328,64 @@
             align-items: center;
             justify-content: center;
             gap: 5px;
-            background: rgba(15, 23, 42, 0.85);
-            border: 1px solid #1e293b;
-            border-radius: 8px;
-            padding: 5px 8px;
+            background: rgba(9, 14, 24, 0.85);
+            border: 1px solid #1e2d45;
+            border-radius: 9px;
+            padding: 6px 10px;
             margin-bottom: 8px;
-            font-size: 0.92rem;
+            font-size: 0.9rem;
             font-weight: 700;
-            color: #e2e8f0;
+            color: #f1f5f9;
+            box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.6);
         }
 
         .diamond-icon {
             display: inline-block;
-            animation: floatDiamond 2.6s infinite ease-in-out;
+            animation: floatDiamond 2.4s infinite ease-in-out;
+            will-change: transform;
         }
 
         .price {
-            font-size: 1.45rem;
+            font-size: 1.52rem;
             font-weight: 900;
-            background: linear-gradient(180deg, #ffffff 10%, #38bdf8 95%);
+            background: linear-gradient(180deg, #ffffff 15%, #38bdf8 95%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-bottom: 12px;
             letter-spacing: 0.5px;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.6));
         }
 
         .btn-copy {
             position: relative;
-            background: linear-gradient(180deg, #2563eb 0%, #1d4ed8 100%);
+            background: linear-gradient(180deg, #2b7de9 0%, #1d4ed8 100%);
             color: #ffffff;
-            border: 1px solid rgba(96, 165, 250, 0.35);
-            border-radius: 8px;
-            padding: 8px 10px;
+            border: 1px solid rgba(125, 211, 252, 0.4);
+            border-radius: 9px;
+            padding: 9px 10px;
             font-size: 0.82rem;
             font-weight: 700;
             letter-spacing: 0.4px;
             cursor: pointer;
             width: 100%;
-            box-shadow: 0 3px 10px rgba(29, 78, 216, 0.45);
-            transition: all 0.2s ease;
+            box-shadow: 0 4px 12px rgba(29, 78, 216, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+            transition: transform 0.15s cubic-bezier(0.2, 0.8, 0.2, 1), background 0.2s ease, box-shadow 0.2s ease;
+            will-change: transform;
         }
 
         .btn-copy:hover {
             background: linear-gradient(180deg, #3b82f6 0%, #2563eb 100%);
-            box-shadow: 0 4px 14px rgba(56, 189, 248, 0.5);
+            box-shadow: 0 5px 16px rgba(56, 189, 248, 0.6);
         }
 
         .btn-copy:active {
-            transform: scale(0.94);
+            transform: scale3d(0.93, 0.93, 1);
         }
 
         .btn-copy.copied {
             background: linear-gradient(180deg, #10b981 0%, #059669 100%);
             border-color: #6ee7b7;
-            box-shadow: 0 4px 14px rgba(16, 185, 129, 0.5);
+            box-shadow: 0 4px 16px rgba(16, 185, 129, 0.6);
         }
 
         /* --- NOTIFICACIÓN FLOTANTE --- */
@@ -343,37 +393,38 @@
             visibility: hidden;
             opacity: 0;
             background: linear-gradient(135deg, #0f172a, #1e293b);
-            border: 1px solid #2b7de9;
+            border: 1px solid #38bdf8;
             color: #f8fafc;
             text-align: center;
-            border-radius: 10px;
-            padding: 10px 18px;
+            border-radius: 12px;
+            padding: 11px 18px;
             position: fixed;
             z-index: 10000;
-            bottom: 20px;
+            bottom: 22px;
             left: 50%;
-            transform: translateX(-50%) translateY(15px);
-            font-size: 0.85rem;
+            transform: translate3d(-50%, 16px, 0);
+            font-size: 0.83rem;
             font-weight: 600;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.85), 0 0 15px rgba(43, 125, 233, 0.35);
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-            white-space: nowrap;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.9), 0 0 18px rgba(56, 189, 248, 0.4);
+            transition: opacity 0.25s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.25s;
+            max-width: 92vw;
+            will-change: transform, opacity;
         }
 
         #toast.show {
             visibility: visible;
             opacity: 1;
-            transform: translateX(-50%) translateY(0);
+            transform: translate3d(-50%, 0, 0);
         }
     </style>
 </head>
 <body>
 
     <!-- VENTANA DE POLÍTICA DE SEGURIDAD Y PRIVACIDAD -->
-    <div id="privacyModal" class="modal-overlay">
+    <div id="privacyModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
         <div class="modal-box">
             <div class="modal-header">
-                <h2>Política de Seguridad y Privacidad</h2>
+                <h2 id="modalTitle">Política de Seguridad y Privacidad</h2>
             </div>
             <div class="modal-content">
                 <p>Bienvenido a la plataforma oficial <strong>RSG-UP</strong>, un entorno digital desarrollado, administrado, mantenido y operado bajo la estructura tecnológica e institucional de <strong>hnmx-comunity.SA.SV</strong>. Antes de acceder al catálogo informativo, visualizar los paquetes disponibles y hacer uso de las herramientas interactivas integradas en este sistema, es de carácter estrictamente obligatorio que todo usuario lea detenidamente, comprenda y acepte en su totalidad las presentes cláusulas de seguridad, privacidad, responsabilidad técnica y limitaciones del servicio.</p>
@@ -391,7 +442,7 @@
                 <p>Se deja constancia clara de que esta aplicación web ha sido diseñada, programada y puesta a disposición del público <strong>únicamente para ver los precios vigentes y almacenar los datos de referencia</strong> de manera ordenada, rápida y accesible. <strong>RSG-UP</strong> no funciona como una pasarela de pagos directa, no procesa tarjetas de crédito ni débito, no realiza cobros automáticos ni ejecuta transferencias bancarias dentro de esta interfaz. Su finalidad exclusiva es servir como un panel de consulta oficial y herramienta de organización de datos proporcionada por <strong>hnmx-comunity.SA.SV</strong> para facilitar la gestión de información entre el usuario y sus registros personales o comerciales.</p>
 
                 <h3>5. Funcionamiento Detallado del Botón "Copiar Texto"</h3>
-                <p>Cada una de las casillas de paquetes disponibles en el catálogo cuenta con un botón interactivo denominado <strong>"Copiar Texto"</strong>. Al tocar o hacer clic sobre este botón, el sistema ejecutará una instrucción automática que copiará directamente al portapapeles de su dispositivo una cadena de texto estructurada que incluye la cantidad exacta de diamantes del paquete seleccionado junto con su precio actual vigente en ese preciso momento. Es entera responsabilidad del usuario verificar que el texto pegado posteriormente en aplicaciones externas, chats o notas coincida fielmente con el monto actualizado en pantalla antes de compartirlo o utilizarlo para cualquier gestión. <strong>hnmx-comunity.SA.SV</strong> no se hace responsable por alteraciones manuales que el usuario realice sobre el texto una vez que este haya sido copiado fuera de la aplicación.</p>
+                <p>Cada una de las casillas de paquetes disponibles en el catálogo cuenta con un botón interactivo denominado <strong>"Copiar Texto"</strong>. Al tocar o hacer clic sobre este botón, el sistema ejecutará una instrucción automática que copiará directamente al portapapeles de su dispositivo una cadena de texto estructurada que incluye la cantidad exacta de diamantes del paquete seleccionado, su bonificación correspondiente y su precio actual vigente en ese preciso momento. Es entera responsabilidad del usuario verificar que el texto pegado posteriormente en aplicaciones externas, chats o notas coincida fielmente con el monto actualizado en pantalla antes de compartirlo o utilizarlo para cualquier gestión. <strong>hnmx-comunity.SA.SV</strong> no se hace responsable por alteraciones manuales que el usuario realice sobre el texto una vez que este haya sido copiado fuera de la aplicación.</p>
 
                 <h3>6. Seguridad Informática, Privacidad y Manejo de Registros</h3>
                 <p>En <strong>hnmx-comunity.SA.SV</strong> nos tomamos muy en serio la seguridad digital y la privacidad de quienes utilizan nuestras herramientas. La estructura de <strong>RSG-UP Versión 1.0.0</strong> opera mediante ejecución local en el navegador del usuario, lo que significa que esta plataforma no solicita, no recopila ni almacena contraseñas de cuentas de videojuegos, credenciales de acceso personal, claves bancarias ni datos privados de terceros. No obstante, al tratarse de una primera versión sujeta a posibles fallos en los registros temporales del navegador y modificaciones a tiempo parcial, se recomienda al usuario mantener su dispositivo libre de software malicioso y evitar guardar información confidencial ajena a la consulta de precios dentro de la memoria caché de esta página.</p>
@@ -412,55 +463,67 @@
         <div class="company-text">hnmx-comunity.SA.SV</div>
     </header>
 
-    <!-- CASILLAS COMPACTAS DE PRECIOS -->
+    <!-- CASILLAS COMPACTAS DE PRECIOS CON BONUS EN ESQUINA -->
     <main class="grid-container">
         
+        <!-- Paquete 1 -->
         <div class="card">
+            <div class="bonus-tag">+10 💎 Bonus</div>
             <div>
-                <div class="diamond-badge">110 diamantes <span class="diamond-icon">💎</span></div>
+                <div class="diamond-badge">100 diamantes <span class="diamond-icon">💎</span></div>
                 <div class="price">$1.10</div>
             </div>
-            <button class="btn-copy" onclick="copiarPaquete(this, '110 diamantes 💎 - Precio actual: $1.10')">Copiar Texto</button>
+            <button class="btn-copy" onclick="copiarPaquete(this, '100 diamantes 💎 (+10 💎 Bonus) - Precio actual: $1.10')">Copiar Texto</button>
         </div>
 
+        <!-- Paquete 2 -->
         <div class="card">
+            <div class="bonus-tag">+41 💎 Bonus</div>
             <div>
-                <div class="diamond-badge">341 diamantes <span class="diamond-icon">💎</span></div>
+                <div class="diamond-badge">300 diamantes <span class="diamond-icon">💎</span></div>
                 <div class="price">$3.05</div>
             </div>
-            <button class="btn-copy" onclick="copiarPaquete(this, '341 diamantes 💎 - Precio actual: $3.05')">Copiar Texto</button>
+            <button class="btn-copy" onclick="copiarPaquete(this, '300 diamantes 💎 (+41 💎 Bonus) - Precio actual: $3.05')">Copiar Texto</button>
         </div>
 
+        <!-- Paquete 3 -->
         <div class="card">
+            <div class="bonus-tag">+71 💎 Bonus</div>
             <div>
-                <div class="diamond-badge">572 diamantes <span class="diamond-icon">💎</span></div>
+                <div class="diamond-badge">500 diamantes <span class="diamond-icon">💎</span></div>
                 <div class="price">$5.40</div>
             </div>
-            <button class="btn-copy" onclick="copiarPaquete(this, '572 diamantes 💎 - Precio actual: $5.40')">Copiar Texto</button>
+            <button class="btn-copy" onclick="copiarPaquete(this, '500 diamantes 💎 (+71 💎 Bonus) - Precio actual: $5.40')">Copiar Texto</button>
         </div>
 
+        <!-- Paquete 4 -->
         <div class="card">
+            <div class="bonus-tag">+166 💎 Bonus</div>
             <div>
-                <div class="diamond-badge">1,166 diamantes <span class="diamond-icon">💎</span></div>
+                <div class="diamond-badge">1,000 diamantes <span class="diamond-icon">💎</span></div>
                 <div class="price">$9.50</div>
             </div>
-            <button class="btn-copy" onclick="copiarPaquete(this, '1166 diamantes 💎 - Precio actual: $9.50')">Copiar Texto</button>
+            <button class="btn-copy" onclick="copiarPaquete(this, '1,000 diamantes 💎 (+166 💎 Bonus) - Precio actual: $9.50')">Copiar Texto</button>
         </div>
 
+        <!-- Paquete 5 -->
         <div class="card">
+            <div class="bonus-tag">+398 💎 Bonus</div>
             <div>
-                <div class="diamond-badge">2,398 diamantes <span class="diamond-icon">💎</span></div>
+                <div class="diamond-badge">2,000 diamantes <span class="diamond-icon">💎</span></div>
                 <div class="price">$17.81</div>
             </div>
-            <button class="btn-copy" onclick="copiarPaquete(this, '2,398 diamantes 💎 - Precio actual: $17.81')">Copiar Texto</button>
+            <button class="btn-copy" onclick="copiarPaquete(this, '2,000 diamantes 💎 (+398 💎 Bonus) - Precio actual: $17.81')">Copiar Texto</button>
         </div>
 
+        <!-- Paquete 6 -->
         <div class="card">
+            <div class="bonus-tag">+1,060 💎 Bonus</div>
             <div>
-                <div class="diamond-badge">6,160 diamantes <span class="diamond-icon">💎</span></div>
+                <div class="diamond-badge">5,000 diamantes <span class="diamond-icon">💎</span></div>
                 <div class="price">$44.60</div>
             </div>
-            <button class="btn-copy" onclick="copiarPaquete(this, '6,160 diamantes 💎 - Precio actual: $44.60')">Copiar Texto</button>
+            <button class="btn-copy" onclick="copiarPaquete(this, '5,000 diamantes 💎 (+1,060 💎 Bonus) - Precio actual: $44.60')">Copiar Texto</button>
         </div>
 
     </main>
@@ -476,10 +539,10 @@
             modal.style.opacity = '0';
             setTimeout(() => {
                 modal.style.display = 'none';
-            }, 300);
+            }, 280);
         }
 
-        // Sistema híbrido de copiado (funciona en cualquier navegador o archivo local)
+        // Sistema híbrido de copiado instantáneo
         function copiarPaquete(boton, textoACopiar) {
             if (navigator.clipboard && window.isSecureContext) {
                 navigator.clipboard.writeText(textoACopiar)
@@ -525,5 +588,5 @@
             }, 2000);
         }
     </script>
- </body>
+</body>
 </html>
